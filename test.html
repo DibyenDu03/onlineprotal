@@ -1,0 +1,23 @@
+<?php
+	session_start();
+	$college=$_SESSION['school'];
+?>
+<html>
+	
+	<center>
+		<form method="post" action="test.php">
+		Test_name :<input type="text" name="testname" id="testid">
+		<br/>
+		Password :<input type="password" name="password" id="password">
+		<br/>
+		COLLEGE :<select name="college" id="college">
+			<option  value="GEU" >GEU</option>
+			<option value="GEHU">GEHU</option>
+			<option value="IIT">IIT</option>
+			<option value="OTHERS">OTHERS</option>
+			</select>
+		<br/>
+		<button type="submit">Set Questions</button>
+		</form>
+	</center>
+</html>

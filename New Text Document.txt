@@ -1,0 +1,25 @@
+<?php
+	
+	$testname=$_POST['testname'];
+	session_start();
+	$college=$_SESSION['school'];
+	$testname=stripcslashes($testname);
+	$testname = mysqli_real_escape_string($conn,$testname);
+	$conn=mysqli_connect("localhost:4000","root","","{$testname}");
+
+	$question = mysqli_real_escape_string($conn,$question);
+	$option1=mysqli_real_escape_string($conn,$option1);
+	$option2=mysqli_real_escape_string($conn,$option2);
+	$option3=mysqli_real_escape_string($conn,$option3);
+	$option4=mysqli_real_escape_string($conn,$option4);
+	
+
+	$result=mysqli_query($conn,"select count(distinct id) from {$testname}  ")or die("Failed to query database ".mysqli_error($conn));
+	$row=mysqli_fetch_array($result,MYSQLI_NUM);
+	$id=$row[0]+1;
+	mysqli_query($conn,"Insert into {$testname} values({$id},'{$question}','{$option1}','{$option2}','{$option3}','{$option4}',{$ans}); ")or die("Failed to query database ".mysqli_error($conn));
+
+header("location:add_questions.html");
+
+	
+?>
